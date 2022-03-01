@@ -7,23 +7,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Webcam</title>
     <style>
-        #camera_area{
+        #camera_area {
             display: flex;
-            justify-content: center;
-            align-items: center;
         }
-        #webcam {
-            background-color: blueviolet;
-            width: 50%;
-            
+
+        #canvas {
+            width: 100%;
+            background-color: yellowgreen;
+        }
+
+        button {
+            font-size: 1.5rem;
+            margin-top: 10px;
+            background-color: blue;
+            color: white;
+            padding: 5px;
+            cursor: pointer;
         }
     </style>
 </head>
 
 <body>
-   <div id="camera_area">
-    <video id="webcam" autoplay="true"></video>
-   </div>
+    <div id="camera_area">
+        <video id="webcam" autoplay="true"></video>
+        <canvas id="canvas"></canvas>
+    </div>
+    <button id="capture">Capture</button>
 
     <script>
         let video = document.getElementById('webcam');
@@ -33,14 +42,21 @@
                 video: true,
                 audio: true
             })
-            
-               .then(function (streamLive){
-                   video.srcObject = streamLive;
-               })
+
+                .then(function (streamLive) {
+                    video.srcObject = streamLive;
+                })
                 .catch((error) => {
                     console.log(error.message)
                 })
         }
+        const canvas = document.getElementById('canvas');
+        const capture = document.getElementById('capture');
+        const context = canvas.getContext('2d');
+        capture.addEventListener('click', () => {
+            console.log('ok')
+            context.drawImage(video,0,0,700,700)
+        })
     </script>
 </body>
 
