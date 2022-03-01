@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webcam</title>
+    <style>
+        #camera_area{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #webcam {
+            background-color: blueviolet;
+            width: 50%;
+            
+        }
+    </style>
+</head>
+
+<body>
+   <div id="camera_area">
+    <video id="webcam" autoplay="true"></video>
+   </div>
+
+    <script>
+        let video = document.getElementById('webcam');
+        let camera = navigator.mediaDevices.getUserMedia;
+        if (camera) {
+            navigator.mediaDevices.getUserMedia({
+                video: true,
+                audio: true
+            })
+            
+               .then(function (streamLive){
+                   video.srcObject = streamLive;
+               })
+                .catch((error) => {
+                    console.log(error.message)
+                })
+        }
+    </script>
+</body>
+
+</html>
