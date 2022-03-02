@@ -24,6 +24,13 @@
             padding: 5px;
             cursor: pointer;
         }
+        @media only screen and (max-width:688px) {
+
+          #camera_area {
+            display: flex;
+            flex-direction: column;
+        }  
+        }
     </style>
 </head>
 
@@ -55,7 +62,7 @@
         const context = canvas.getContext('2d');
         capture.addEventListener('click', () => {
             console.log('ok')
-            context.drawImage(video,0,0,700,700)
+            context.drawImage(video,0,0,200,200)
         })
     </script>
 </body>
